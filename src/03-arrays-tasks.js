@@ -37,7 +37,7 @@ function findElement(arr, value) {
  */
 function generateOdds(/* len */) {
   throw new Error('Not implemented');
-  // return Array.from(len, (i) => i % 2);
+  // return Array.from(len > 1 ? Array(len + 1).keys() + 3 : Array(len).keys() + 1);
 }
 
 
@@ -530,8 +530,8 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.reduce((resArr, curArr) => resArr.concat(childrenSelector(curArr)), []);
 }
 
 
@@ -547,8 +547,8 @@ function selectMany(/* arr, childrenSelector */) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  return indexes.reduce((item, ind) => item[ind], arr);
 }
 
 
@@ -570,8 +570,12 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  if (arr.length % 2 === 0) {
+    return arr.slice(arr.length / 2).concat(arr.slice(0, arr.length / 2));
+  }
+  // eslint-disable-next-line max-len
+  return arr.slice((arr.length - 1) / 2 + 1).concat(arr.splice((arr.length - 1) / 2, 1), arr.slice(0, (arr.length - 1) / 2 + 1));
 }
 
 
