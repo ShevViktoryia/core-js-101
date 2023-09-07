@@ -131,19 +131,6 @@ function isTriangle(a, b, c) {
  *
  */
 function doRectanglesOverlap(/* rect1, rect2 */) {
-  // eslint-disable-next-line max-len
-  // if (rect1.top === rect1.top + rect1.width || rect1.left === rect1.left + rect1.height || rect2.top + rect2.width === rect2.left || rect2.left === rect2.left + rect2.height) {
-  //   return false;
-  // }
-  //       if (rect1.top > rect2.top + rect2.width || rect2.top > rect1.) {
-  //           return false;
-  //       }
-
-  //       if (r1.y > l2.y || r2.y > l1.y) {
-  //           return false;
-  //       }
-
-  // return true;
   throw new Error('Not implemented');
 }
 
@@ -174,8 +161,9 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  // eslint-disable-next-line no-unused-expressions, max-len
+  return ((circle.center.x - point.x) ** 2 + (circle.center.y - point.y) ** 2 < circle.radius ** 2);
 }
 
 
@@ -307,20 +295,6 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(/* ccn */) {
-  // const arr = [];
-  // ccn.toString().split('').forEach((item, ind) => {
-  //   if (ind % 2 === 0) {
-  //     // eslint-disable-next-line no-unused-expressions
-  //     while (2 * item > 9) {
-  //       // eslint-disable-next-line no-param-reassign
-  //       item = 2 * item - 9;
-  //     }
-  //     arr.push(item);
-  //   } else {
-  //     arr.push(item);
-  //   }
-  // });
-  // return arr.reduce((sum, cur) => sum + cur, 0) % 10 === 0;
   throw new Error('Not implemented');
 }
 
@@ -394,8 +368,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 
