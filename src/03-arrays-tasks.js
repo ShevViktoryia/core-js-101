@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 /* ********************************************************************************************
  *                                                                                            *
  * Please read the following tutorial before implementing tasks:                               *
@@ -35,9 +36,8 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
-  // return Array.from(len > 1 ? Array(len + 1).keys() + 3 : Array(len).keys() + 1);
+function generateOdds(len) {
+  return Array.from({ length: len }, (elem, i) => 1 + i * 2);
 }
 
 
@@ -270,8 +270,9 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  // eslint-disable-next-line max-len
+  return arr.reduce((res, item, ind) => res.concat(Array.from({ length: ind + 1 }, () => item)), []);
 }
 
 
@@ -323,8 +324,9 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const inArr = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  return arr.sort((a, b) => inArr.indexOf(a) - inArr.indexOf(b));
 }
 
 /**
