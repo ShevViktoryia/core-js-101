@@ -1,3 +1,6 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable consistent-return */
 /* eslint-disable operator-linebreak */
 /* *************************************************************************************************
  *                                                                                                *
@@ -127,6 +130,7 @@ function isTriangle(a, b, c) {
  *
  */
 function doRectanglesOverlap(/* rect1, rect2 */) {
+  throw new Error('Not implemented');
   // return !(
   //   // eslint-disable-next-line operator-linebreak
   //   (
@@ -295,8 +299,23 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  let total = 0;
+  ccn
+    .toString()
+    .split('')
+    .reverse()
+    .forEach((char, ind) => {
+      let num = parseInt(char, 10);
+      if (ind % 2 === 1) {
+        num *= 2;
+        if (num > 9) {
+          num -= 9;
+        }
+      }
+      total += num;
+    });
+  return total % 10 === 0;
 }
 
 /**
@@ -343,8 +362,26 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const res = [];
+  const brakets = {
+    ')': '(',
+    ']': '[',
+    '}': '{',
+    '>': '<',
+  };
+
+  for (const char of str) {
+    if (['(', '[', '{', '<'].includes(char)) {
+      res.push(char);
+    } else if (brakets[char]) {
+      if (res.pop() !== brakets[char]) {
+        return false;
+      }
+    }
+  }
+
+  return res.length === 0;
 }
 
 /**
@@ -383,8 +420,17 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const path_part = pathes[0].split('/');
+  path_part.forEach((part, i) => {
+    pathes.forEach((path) => {
+      const cur_path = path.split('/');
+      if (cur_path[i] !== part) {
+        return path_part.slice(0, i).join('/') + (i > 0 ? '/' : '');
+      }
+    });
+    return pathes[0];
+  });
 }
 
 /**
