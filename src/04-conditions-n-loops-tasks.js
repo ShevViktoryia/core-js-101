@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* *************************************************************************************************
  *                                                                                                *
  * Please read the following tutorial before implementing tasks:                                   *
@@ -5,7 +6,6 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration              *
  *                                                                                                *
  ************************************************************************************************ */
-
 
 /**
  * Returns the 'Fizz','Buzz' or an original number using the following rules:
@@ -40,7 +40,6 @@ function getFizzBuzz(num) {
   return num;
 }
 
-
 /**
  * Returns the factorial of the specified integer n.
  *
@@ -55,7 +54,6 @@ function getFizzBuzz(num) {
 function getFactorial(n) {
   return n !== 1 ? n * getFactorial(n - 1) : 1;
 }
-
 
 /**
  * Returns the sum of integer numbers between n1 and n2 (inclusive).
@@ -77,7 +75,6 @@ function getSumBetweenNumbers(n1, n2) {
   return sum;
 }
 
-
 /**
  * Returns true, if a triangle can be built with the specified sides a, b, c
  * and false in any other ways.
@@ -94,9 +91,8 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a, b, c) {
-  return (a + b > c && a + c > b && c + b > a);
+  return a + b > c && a + c > b && c + b > a;
 }
-
 
 /**
  * Returns true, if two specified axis-aligned rectangles overlap, otherwise false.
@@ -131,9 +127,16 @@ function isTriangle(a, b, c) {
  *
  */
 function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+  // return !(
+  //   // eslint-disable-next-line operator-linebreak
+  //   (
+  //     rect1.x > rect2.x + rect2.width ||
+  //     rect1.x + rect1.width < rect2.x ||
+  //     rect1.y > rect2.y + rect2.height ||
+  //     rect1.y + rect1.height < rect2.y
+  //   )
+  // );
 }
-
 
 /**
  * Returns true, if point lies inside the circle, otherwise false.
@@ -163,9 +166,11 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  */
 function isInsideCircle(circle, point) {
   // eslint-disable-next-line no-unused-expressions, max-len
-  return ((circle.center.x - point.x) ** 2 + (circle.center.y - point.y) ** 2 < circle.radius ** 2);
+  return (
+    (circle.center.x - point.x) ** 2 + (circle.center.y - point.y) ** 2 <
+    circle.radius ** 2
+  );
 }
-
 
 /**
  * Returns the first non repeated char in the specified strings otherwise returns null.
@@ -196,7 +201,6 @@ function findFirstSingleChar(str) {
   });
   return res[0] || null;
 }
-
 
 /**
  * Returns the string representation of math interval,
@@ -239,7 +243,6 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
   return res;
 }
 
-
 /**
  * Reverse the specified string (put all chars in reverse order)
  *
@@ -256,7 +259,6 @@ function reverseString(str) {
   return str.split('').reverse().join('');
 }
 
-
 /**
  * Reverse the specified integer number (put all digits in reverse order)
  *
@@ -272,7 +274,6 @@ function reverseString(str) {
 function reverseInteger(num) {
   return Number(num.toString().split('').reverse().join(''));
 }
-
 
 /**
  * Validates the CCN (credit card number) and return true if CCN is valid
@@ -313,14 +314,13 @@ function isCreditCardNumber(/* ccn */) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-  const arr = (num).toString().split('');
+  const arr = num.toString().split('');
   const value = arr.reduce((sum, cur) => sum + Number(cur), 0);
   if (value > 9) {
     return getDigitalRoot(value);
   }
   return value;
 }
-
 
 /**
  * Returns true if the specified string has the balanced brackets and false otherwise.
@@ -347,7 +347,6 @@ function isBracketsBalanced(/* str */) {
   throw new Error('Not implemented');
 }
 
-
 /**
  * Returns the string with n-ary (binary, ternary, etc, where n <= 10)
  * representation of specified number.
@@ -372,7 +371,6 @@ function toNaryString(num, n) {
   return num.toString(n);
 }
 
-
 /**
  * Returns the common directory path for specified array of full filenames.
  *
@@ -388,7 +386,6 @@ function toNaryString(num, n) {
 function getCommonDirectoryPath(/* pathes */) {
   throw new Error('Not implemented');
 }
-
 
 /**
  * Returns the product of two specified matrixes.
@@ -411,7 +408,6 @@ function getCommonDirectoryPath(/* pathes */) {
 function getMatrixProduct(/* m1, m2 */) {
   throw new Error('Not implemented');
 }
-
 
 /**
  * Returns the evaluation of the specified tic-tac-toe position.
@@ -446,7 +442,6 @@ function getMatrixProduct(/* m1, m2 */) {
 function evaluateTicTacToePosition(/* position */) {
   throw new Error('Not implemented');
 }
-
 
 module.exports = {
   getFizzBuzz,

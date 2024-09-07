@@ -1,3 +1,8 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable func-names */
+/* eslint-disable no-return-assign */
+/* eslint-disable comma-dangle */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-else-return */
 /* ********************************************************************************************
  *                                                                                            *
@@ -7,7 +12,6 @@
  * NOTE : Please do not use loops! All tasks can be implemented using standard Array methods  *
  *                                                                                            *
  ******************************************************************************************** */
-
 
 /**
  * Returns an index of the specified element in array or -1 if element is not found
@@ -40,7 +44,6 @@ function generateOdds(len) {
   return Array.from({ length: len }, (elem, i) => 1 + i * 2);
 }
 
-
 /**
  * Returns the doubled array - elements of the specified array
  * are repeated twice using original order
@@ -56,7 +59,6 @@ function generateOdds(len) {
 function doubleArray(arr) {
   return arr.concat(...arr);
 }
-
 
 /**
  * Returns an array of positive numbers from the specified array in original order
@@ -120,7 +122,6 @@ function getUpperCaseStrings(arr) {
   return arr.map((item) => item.toUpperCase());
 }
 
-
 /**
  * Returns the array of string lengths from the specified string array.
  *
@@ -163,7 +164,6 @@ function insertItem(arr, item, index) {
 function getHead(arr, n) {
   return arr.slice(0, n);
 }
-
 
 /**
  * Returns the n last items of the specified array
@@ -218,7 +218,6 @@ function toArrayOfSquares(arr) {
   return arr.map((item) => item ** 2);
 }
 
-
 /**
  * Transforms the numeric array to the according moving sum array:
  *     f[n] = x[0] + x[1] + x[2] +...+ x[n]
@@ -236,7 +235,7 @@ function toArrayOfSquares(arr) {
 function getMovingSum(arr) {
   const newArr = [];
   // eslint-disable-next-line no-return-assign
-  arr.reduce((prev, curr, i) => newArr[i] = prev + curr, 0);
+  arr.reduce((prev, curr, i) => (newArr[i] = prev + curr), 0);
   return newArr;
 }
 
@@ -252,9 +251,8 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-  return arr.filter((item, i) => (i % 2) === 1);
+  return arr.filter((item, i) => i % 2 === 1);
 }
-
 
 /**
  * Propagates every item in sequence its position times
@@ -272,9 +270,12 @@ function getSecondItems(arr) {
  */
 function propagateItemsByPositionIndex(arr) {
   // eslint-disable-next-line max-len
-  return arr.reduce((res, item, ind) => res.concat(Array.from({ length: ind + 1 }, () => item)), []);
+  return arr.reduce(
+    (res, item, ind) => res.concat(Array.from({ length: ind + 1 }, () => item)),
+    // eslint-disable-next-line comma-dangle
+    []
+  );
 }
-
 
 /**
  * Returns the 3 largest numbers from the specified array
@@ -293,7 +294,6 @@ function get3TopItems(arr) {
   return arr.reverse().slice(0, 3);
 }
 
-
 /**
  * Returns the number of positive numbers from specified array
  *
@@ -308,7 +308,9 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-  return arr.filter((item) => item > 0 && typeof item === 'number').reduce((count) => count + 1, 0);
+  return arr
+    .filter((item) => item > 0 && typeof item === 'number')
+    .reduce((count) => count + 1, 0);
 }
 
 /**
@@ -325,7 +327,18 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-  const inArr = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  const inArr = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
   return arr.sort((a, b) => inArr.indexOf(a) - inArr.indexOf(b));
 }
 
@@ -394,7 +407,6 @@ function toStringList(arr) {
   return arr.join(',');
 }
 
-
 /**
  * Sorts the specified array by country name first and city name
  * (if countries are equal) in ascending order.
@@ -421,8 +433,17 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  return (
+    arr
+      .sort((a, b) => (a.country > b.country ? 1 : -1))
+      // eslint-disable-next-line array-callback-return, consistent-return
+      .sort((a, b) => {
+        if (a.country === b.country) {
+          return a.city > b.city ? 1 : -1;
+        }
+      })
+  );
 }
 
 /**
@@ -443,8 +464,17 @@ function sortCitiesArray(/* arr */) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  // eslint-disable-next-line no-return-assign, prefer-arrow-callback
+  return Array(n)
+    .fill(0)
+    .map((elem, i) => {
+      return Array(n)
+        .fill(0)
+        .map((item, j) => {
+          return 1 - Math.min(Math.abs(i - j), 1);
+        });
+    });
 }
 
 /**
@@ -518,7 +548,6 @@ function group(/* array, keySelector, valueSelector */) {
   throw new Error('Not implemented');
 }
 
-
 /**
  * Projects each element of the specified array to a sequence
  * and flattens the resulting sequences into one array.
@@ -533,9 +562,12 @@ function group(/* array, keySelector, valueSelector */) {
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-  return arr.reduce((resArr, curArr) => resArr.concat(childrenSelector(curArr)), []);
+  return arr.reduce(
+    (resArr, curArr) => resArr.concat(childrenSelector(curArr)),
+    // eslint-disable-next-line comma-dangle
+    []
+  );
 }
-
 
 /**
  * Returns an element from the multidimensional array by the specified indexes.
@@ -552,7 +584,6 @@ function selectMany(arr, childrenSelector) {
 function getElementByIndexes(arr, indexes) {
   return indexes.reduce((item, ind) => item[ind], arr);
 }
-
 
 /**
  * Swaps the head and tail of the specified array:
@@ -577,9 +608,12 @@ function swapHeadAndTail(arr) {
     return arr.slice(arr.length / 2).concat(arr.slice(0, arr.length / 2));
   }
   // eslint-disable-next-line max-len
-  return arr.slice((arr.length - 1) / 2 + 1).concat(arr.splice((arr.length - 1) / 2, 1), arr.slice(0, (arr.length - 1) / 2 + 1));
+  return arr.slice((arr.length - 1) / 2 + 1).concat(
+    arr.splice((arr.length - 1) / 2, 1),
+    // eslint-disable-next-line comma-dangle
+    arr.slice(0, (arr.length - 1) / 2 + 1)
+  );
 }
-
 
 module.exports = {
   findElement,
