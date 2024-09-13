@@ -131,10 +131,10 @@ function isTriangle(a, b, c) {
  */
 function doRectanglesOverlap(rect1, rect2) {
   return !(
-    rect1.x + rect1.width < rect2.x ||
-    rect2.x + rect2.width < rect1.x ||
-    rect1.y + rect1.height < rect2.y ||
-    rect2.y + rect2.height < rect1.y
+    rect1.top + rect1.width < rect2.top ||
+    rect2.top + rect2.width < rect1.top ||
+    rect1.left + rect1.height < rect2.left ||
+    rect2.left + rect2.height < rect1.left
   );
 }
 
@@ -416,8 +416,18 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const parts = pathes.map((path) => path.split('/'));
+  const cur_part = [];
+  for (let i = 0; i < parts[0].length; i += 1) {
+    const currentComponents = parts.map((components) => components[i]);
+    if (new Set(currentComponents).size === 1) {
+      cur_part.push(currentComponents[0]);
+    } else {
+      break;
+    }
+  }
+  return cur_part.length === 0 ? '' : `${cur_part.join('/')}/`;
 }
 
 /**
